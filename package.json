@@ -1,0 +1,19 @@
+{
+  "version": "0.1",
+  "name": "com.seon.navigator.SeonNavigator",
+  "cordova_name": "Seon Navigator",
+  "description": "Seon Navigator",
+  "license": "MIT",
+  "repo": "",
+  "issue": "",
+  "keywords": [
+    "cordova",
+    "device",
+    "navigation"
+  ],
+  "platforms": [
+    "android"
+  ],
+  "engines": [],
+  "englishdoc": ""
+}
