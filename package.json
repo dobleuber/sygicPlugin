@@ -1,6 +1,6 @@
 {
   "version": "0.1",
-  "name": "com.seon.navigator.SeonNavigator",
+  "name": "com.seon.navigator.SygicPlugin",
   "cordova_name": "Seon Navigator",
   "description": "Seon Navigator",
   "license": "MIT",

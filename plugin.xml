@@ -1,25 +1,25 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <plugin xmlns="http://www.phonegap.com/ns/plugins/1.0"
     xmlns:android="http://schemas.android.com/apk/res/android"
-           id="com.seon.navigator.SeonNavigator"
+           id="com.seon.navigator.SygicPlugin"
       version="0.1.0">
-    <name>Sygic</name>
+    <name>Sygic Plugin</name>
     <description>Sygic PhoneGap Integration Plugin</description>
     <license>MIT</license>
     <keywords>phonegap,sygic,navigator</keywords>
 
 
-    <js-module src="www/sygic.js" name="Sygic">
-        <clobbers target="window.navigator" />
+    <js-module src="www/SygicPlugin.js" name="SygicPlugin">
+        <clobbers target="SygicPlugin" />
     </js-module>
 
     <!-- android -->
     <platform name="android">
         <config-file target="res/xml/config.xml" parent="/*">
-            <feature name="Sygic">
-                <param name="android-package" value="com.seon.navigator.SeonNavigator"/>
+            <feature name="SygicPlugin">
+                <param name="android-package" value="com.seon.navigator.SygicPlugin"/>
             </feature>
         </config-file>
-        <source-file src="src/android/Sygic.java" target-dir="src/" />
+        <source-file src="src/android/SygicPlugin.java" target-dir="src/" />
      </platform>          
 </plugin>
