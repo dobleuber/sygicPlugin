@@ -6,13 +6,16 @@ import org.apache.cordova.CordovaPlugin;
 import org.apache.cordova.CordovaInterface;
 import android.util.Log;
 import android.provider.Settings;
-import android.widget.Toast;
+
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.lang.Exception;
 import java.lang.Long;
+
+import com.github.johnpersano.supertoasts.SuperToast;
+import com.github.johnpersano.supertoasts.util.Style;
 
 public class SygicPlugin extends CordovaPlugin {
     public static final String TAG = "Sygic Plugin";
@@ -32,7 +35,6 @@ public class SygicPlugin extends CordovaPlugin {
         Log.v(TAG,"Init Sygic");
     }
     public boolean execute(final String action, JSONArray args, CallbackContext callbackContext) {
-        final int duration = Toast.LENGTH_SHORT;
 // Shows a toast
         Log.v(TAG,"Sygic received:"+ action);
 
@@ -41,8 +43,8 @@ public class SygicPlugin extends CordovaPlugin {
                 final String message = args.getString(0);
                 cordova.getActivity().runOnUiThread(new Runnable() {
                     public void run() {
-                        Toast toast = Toast.makeText(cordova.getActivity().getApplicationContext(), message, duration);
-                        toast.show();
+                        SuperToast.create(cordova.getActivity().getApplicationContext(), message, SuperToast.Duration.LONG,
+                                Style.getStyle(Style.GREEN, SuperToast.Animations.SCALE)).show();
                     }
                 });
                 callbackContext.success();

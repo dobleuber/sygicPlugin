@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<plugin xmlns="http://www.phonegap.com/ns/plugins/1.0"
+<plugin xmlns="http://apache.org/cordova/ns/plugins/1.0"
     xmlns:android="http://schemas.android.com/apk/res/android"
            id="com.seon.navigator.SygicPlugin"
       version="0.1.0">
@@ -7,6 +7,11 @@
     <description>Sygic PhoneGap Integration Plugin</description>
     <license>MIT</license>
     <keywords>phonegap,sygic,navigator</keywords>
+
+    <engines>
+        <engine name="cordova-android" version=">=4" />
+        <engine name="cordova-plugman" version=">=4.2.0" /><!-- needed for gradleReference support -->
+    </engines>
 
 
     <js-module src="www/SygicPlugin.js" name="SygicPlugin">
@@ -21,5 +26,6 @@
             </feature>
         </config-file>
         <source-file src="src/android/SygicPlugin.java" target-dir="src/" />
+        <framework src="src/android/build.gradle" custom="true" type="gradleReference" />
      </platform>          
 </plugin>
