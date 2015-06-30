@@ -17,8 +17,14 @@ import java.lang.Long;
 import com.github.johnpersano.supertoasts.SuperToast;
 import com.github.johnpersano.supertoasts.util.Style;
 
+import com.seon.navigator.dto.RouteDTO;
+import com.seon.navigator.service.NavigatorService;
+import com.seon.navigator.service.impl.SygicNavigatorService;
+import com.seon.navigator.util.TestUtils;
+
 public class SygicPlugin extends CordovaPlugin {
     public static final String TAG = "Sygic Plugin";
+    private NavigatorService navigatorService;
     /**
      * Constructor.
      */
@@ -33,6 +39,7 @@ public class SygicPlugin extends CordovaPlugin {
     public void initialize(CordovaInterface cordova, CordovaWebView webView) {
         super.initialize(cordova, webView);
         Log.v(TAG,"Init Sygic");
+        navigatorService = new SygicNavigatorService(cordova.getActivity().getApplicationContext());
     }
     public boolean execute(final String action, JSONArray args, CallbackContext callbackContext) {
 // Shows a toast
@@ -50,7 +57,7 @@ public class SygicPlugin extends CordovaPlugin {
                 callbackContext.success();
             } else if (action.equals("translateCoords")) {
 
-                callbackContext.success("Mi casa " + args.getLong(0) + " " + args.getLong(1));
+                callbackContext.success(navigatorService.getLocationAddressInfo());
             } else {
                 callbackContext.error("Invalid action");
                 return false;
