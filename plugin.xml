@@ -22,9 +22,18 @@
     <platform name="android">
         <config-file target="res/xml/config.xml" parent="/*">
             <feature name="SygicPlugin">
-                <param name="android-package" value="com.seon.navigator.SygicPlugin"/>
+                <param name="android-package" value="com.seon.navigator"/>
             </feature>
         </config-file>
+        <source-file src="src/android/libs/RemoteApi.jar" target-dir="src/libs/" />
+        <source-file src="src/android/navigator/dto/RouteDTO.java" target-dir="src/navigator/dto/" />
+        <source-file src="src/android/navigator/dto/StopDTO.java" target-dir="src/navigator/dto/" />
+        <source-file src="src/android/navigator/exception/NavigatorException.java" target-dir="src/navigator/exception/" />
+        <source-file src="src/android/navigator/service/NavigatorService.java" target-dir="src/navigator/service/" />
+        <source-file src="src/android/navigator/service/impl/SygicNavigatorService.java" target-dir="src/navigator/service/impl/" />
+        <source-file src="src/android/navigator/util/SygicSdkConstants.java" target-dir="src/navigator/util/" />
+        <source-file src="src/android/navigator/util/TestUtils.java" target-dir="src/navigator/util/" />
+        <source-file src="src/android/navigator/util/Util.java" target-dir="src/navigator/util/" />
         <source-file src="src/android/SygicPlugin.java" target-dir="src/" />
         <framework src="src/android/build.gradle" custom="true" type="gradleReference" />
      </platform>          
