@@ -14,9 +14,6 @@ import org.json.JSONObject;
 import java.lang.Exception;
 import java.lang.Long;
 
-import com.github.johnpersano.supertoasts.SuperToast;
-import com.github.johnpersano.supertoasts.util.Style;
-
 public class SygicPlugin extends CordovaPlugin {
     public static final String TAG = "Sygic Plugin";
     /**
@@ -42,10 +39,7 @@ public class SygicPlugin extends CordovaPlugin {
             if(action.equals("showToast")) {
                 final String message = args.getString(0);
                 cordova.getActivity().runOnUiThread(new Runnable() {
-                    public void run() {
-                        SuperToast.create(cordova.getActivity().getApplicationContext(), message, SuperToast.Duration.LONG,
-                                Style.getStyle(Style.GREEN, SuperToast.Animations.SCALE)).show();
-                    }
+
                 });
                 callbackContext.success();
             } else if (action.equals("translateCoords")) {
