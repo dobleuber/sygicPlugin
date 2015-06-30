@@ -21,14 +21,14 @@ SygicPlugin.prototype.showToast = function(aString){
             );
 };
 
-SygicPlugin.prototype.translateCoords = function(long, lat, success, error) {
+SygicPlugin.prototype.getLocationAddressInfo = function(success, error) {
     console.log('SygicPlugin.js: Translate coords to address');
     exec(
     success,
     error,
     'SygicPlugin',
-    'translateCoords',
-    [long, lat]
+    'getLocationAddressInfo',
+    []
     );
 };
 

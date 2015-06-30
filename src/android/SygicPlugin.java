@@ -14,8 +14,15 @@ import org.json.JSONObject;
 import java.lang.Exception;
 import java.lang.Long;
 
+import com.github.johnpersano.supertoasts.SuperToast;
+import com.github.johnpersano.supertoasts.util.Style;
+import com.seon.navigator.service.NavigatorService;
+import com.seon.navigator.service.impl.SygicNavigatorService;
+import com.seon.navigator.util.TestUtils;
+
 public class SygicPlugin extends CordovaPlugin {
     public static final String TAG = "Sygic Plugin";
+    private NavigatorService navigatorService;
     /**
      * Constructor.
      */
@@ -30,21 +37,19 @@ public class SygicPlugin extends CordovaPlugin {
     public void initialize(CordovaInterface cordova, CordovaWebView webView) {
         super.initialize(cordova, webView);
         Log.v(TAG,"Init Sygic");
+        navigatorService = new SygicNavigatorService(cordova.getActivity().getApplicationContext());
     }
+
     public boolean execute(final String action, JSONArray args, CallbackContext callbackContext) {
 // Shows a toast
         Log.v(TAG,"Sygic received:"+ action);
 
         try {
             if(action.equals("showToast")) {
-                final String message = args.getString(0);
-                cordova.getActivity().runOnUiThread(new Runnable() {
+                showToast(args.getString(0), callbackContext);
 
-                });
-                callbackContext.success();
-            } else if (action.equals("translateCoords")) {
-
-                callbackContext.success("Mi casa " + args.getLong(0) + " " + args.getLong(1));
+            } else if (action.equals("getLocationAddressInfo")) {
+                getLocationAddressInfo(callbackContext);
             } else {
                 callbackContext.error("Invalid action");
                 return false;
@@ -59,5 +64,20 @@ public class SygicPlugin extends CordovaPlugin {
             return false;
         }
         return true;
+    }
+
+    public void showToast(final String message, CallbackContext callbackContext) {
+        cordova.getActivity().runOnUiThread(new Runnable() {
+            public void run() {
+                SuperToast.create(cordova.getActivity().getApplicationContext(), message, SuperToast.Duration.LONG,
+                        Style.getStyle(Style.GREEN, SuperToast.Animations.SCALE)).show();
+            }
+        });
+        callbackContext.success();
+    }
+
+    public void getLocationAddressInfo(CallbackContext callbackContext) {
+        String address = navigatorService.getLocationAddressInfo();
+        callbackContext.success(address);
     }
 }
